@@ -1,12 +1,12 @@
-<p>
-  <!DOCTYPE html>
+<div>
+<!--   <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
     </head>
     <body>
-        <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
-        <script src="d3.min.js?v=3.2.8"></script>
+        <script src="http://d3js.org/d3.v3.min.js"></script> -->
+        <!--<script src="d3.min.js?v=3.2.8"></script>
 
         <script type="text/javascript"charset="utf-8">
             d3.text("data.csv", function(data) {
@@ -24,7 +24,21 @@
                         .append("td")
                         .text(function(d) { return d; });
             });
-        </script>
+        </script>     
     </body>
-</html>
-</p>
+</html>-->   
+
+        <div *ngIf="!this.tsdService.selectDetail">
+            <div *ngFor='let listing of listings' (click)="toCardDetail(listing)" >
+                <listingCard [listing]="listing"></listingCard>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="this.tsdService.selectDetail">
+            <div class='card'>
+                <br>
+                <span class='button card' (click)='toMaster()'><< Back</span><br>
+                <listing-detail [listing]='this.tsdService.selectedListing'></listing-detail>
+            </div>
+        </div>
+</div>

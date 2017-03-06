@@ -7,11 +7,16 @@ import { D3Service } from 'd3-ng2-service';
 
 import { AppComponent } from './app.component';
 import { ListingsComponent } from './components/listings/listings.component';
+import { ListingComponent } from './components/listings/listing.component';
+import { ListingDetailComponent } from './components/listing-detail/listing-detail.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    ListingsComponent
+    ListingsComponent,
+    ListingComponent,
+    ListingDetailComponent
   ],
   imports: [
     BrowserModule,

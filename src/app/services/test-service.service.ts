@@ -5,4 +5,8 @@ export class TestServiceService {
 
   constructor() { }
 
+  getData(){
+    return "Success"
+  }
+
 }
