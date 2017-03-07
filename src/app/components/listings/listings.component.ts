@@ -1,5 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { D3Service, D3, Selection } from 'd3-ng2-service';
+import {Observable} from 'rxjs/Observable';
 
 import { ListingComponent } from './listing.component';
 import { Listing } from './listing';
@@ -18,7 +19,6 @@ export class ListingsComponent implements OnInit {
   private listings: Listing[] = [];
   private headers: String[] = [];
   private tableHTML: String = '';
-  private csvData: any = [];
 
   constructor(element: ElementRef, 
               d3Service: D3Service, 
@@ -26,9 +26,13 @@ export class ListingsComponent implements OnInit {
     this.d3 = d3Service.getD3();
     this.parentNativeElement = element.nativeElement;
 
-    this.listings = this.tsdService.getDummyListings();
+    this.tsdService.getListings().subscribe(listings => {
+      this.listings = listings
+      console.log('listings updated...');
+      console.dir(this.listings);
+    })
     console.log('headers'+this.listings[0])
-    this.headers = this.tsdService.getDummyHeaders();
+    this.headers = this.tsdService.getListingHeaders();
     console.log(this.headers);  
    }
 

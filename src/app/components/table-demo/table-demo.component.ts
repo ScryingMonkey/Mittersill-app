@@ -33,7 +33,7 @@ export class TableDemoComponent implements OnInit {
     this.data = this.tsdService.getDummyListings();
     this.columns = this.getCols();
     this.length = this.data.length;
-    this.headings = this.tsdService.getDummyHeaders();
+    this.headings = this.tsdService.getListingHeaders();
    }
 
   public ngOnInit():void {

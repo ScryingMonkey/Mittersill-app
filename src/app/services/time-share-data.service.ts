@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import {Observable} from 'rxjs/Observable';
 
 import { Listing } from '../components/listings/listing';
 
@@ -6,8 +8,15 @@ import { Listing } from '../components/listings/listing';
 export class TimeShareDataService {
   private selectedListing: Listing = null;
   public selectDetail:boolean = false;
+  private data:FirebaseListObservable<any[]>;
+  public listings: Observable<Listing[]>;
+  private headers: String[] = [];
 
-  constructor() { }
+  constructor(af: AngularFire) { 
+    this.data = af.database.list('/ForSaleByOwner');
+    this.headers = this.getListingHeaders();
+    this.listings = this.data;
+  }
 
   getDummyListing() {
     var r = Math.random();
@@ -29,7 +38,10 @@ export class TimeShareDataService {
     console.dir(listings);
     return listings;
   }
-  getDummyHeaders() {
+  getListings() {
+    return this.listings;
+  }
+  getListingHeaders() {
     return [ 'Week #','Unit #','# Bedrooms',	
       'Occupancy','Privacy','Contact Name',	
       'Email','Phone','Description',

@@ -20,7 +20,7 @@ export class ListingDetailComponent implements OnInit {
     this.title = 'Unit #'+this.listing.unitNum;
     this.detail = this.getDetails(this.listing);
   }
-  getDetails(data:Object) { 
+  getDetails(data:Object) {  //not used
     let detailsString:String = '';
     for(let d in data) {
       detailsString += 'TEST:' +d+ '/n';
